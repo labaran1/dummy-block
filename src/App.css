@@ -28,11 +28,37 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+.show {
+}
+
+.flexParent {
+  transition: all 1s ease-in;
+  display: grid;
+  /* flex-direction: column; */
+  gap: 1rem;
+  grid-template-rows: 0;
+  overflow: hidden;
+
+  /* height: 120px; */
+}
+.show .flexParent {
+  /* height: auto;
+  animation: showAni 1s ease-in; */
+}
+
+@keyframes showAni {
   from {
-    transform: rotate(0deg);
+    height: 120px;
   }
   to {
-    transform: rotate(360deg);
+    height: auto !important;
   }
 }
+.defaultClass {
+  overflow: hidden;
+  background-color: blue;
+}
+
+/* .defaultClass .flexParent {
+  height: 120px;
+} */

@@ -21,18 +21,22 @@ function App() {
     { id: 14, name: 'Product 14', price: 1400, qty: 1 },
   ]);
   const [currentCart, setCurrentCart] = useState([...cart]);
+  const [togState, setTogState] = useState(false);
 
   return (
     <div className='App'>
       <button
         style={{ margin: '2rem' }}
         onClick={() => {
-          if (currentCart.length < 3) {
+          if (togState) {
             setCurrentCart([...cart]);
+            setTogState(false);
           } else {
-            const a = cart;
-            const c = a?.slice(14 - 2);
-            setCurrentCart([...c]);
+            setTogState(true);
+            // const a = cart;
+            // const c = a?.slice(14 - 2);
+            // setCurrentCart([...c]);
+            setCurrentCart([...cart]);
           }
         }}
       >
@@ -40,30 +44,26 @@ function App() {
         Shrink
       </button>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem',
-          transition: 'all 0.5s ease-in-out',
-        }}
-      >
-        {currentCart.map((item) => (
-          <div
-            key={item.id}
-            style={{
-              background: '#ccc',
-              width: '200px',
-              padding: '1rem',
-              alignSelf: 'center',
-            }}
-          >
-            <span>
-              {item.name} {item.price} {item.qty}
-            </span>
-          </div>
-        ))}
-      </div>
+      <section className={`defaultClass ${togState ? 'show' : ''}`}>
+        <div className='flexParent'>
+          {currentCart.map((item) => (
+            <div
+              key={item.id}
+              style={{
+                background: '#ccc',
+                width: '200px',
+                padding: '1rem',
+                alignSelf: 'center',
+                overflow: 'hidden',
+              }}
+            >
+              <span>
+                {item.name} {item.price} {item.qty}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
